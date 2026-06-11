@@ -7,7 +7,7 @@ from telegram import Update, KeyboardButton, ReplyKeyboardMarkup, InlineKeyboard
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, MessageHandler, filters, ContextTypes
 
 # --- البيانات الأساسية المحمية ---
-TOKEN = "8934798642:AAFvLW9DDIIhc3AYlKnEgFoveFQYRRyHQkY"
+TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 ADMIN_ID = 844192857
 
 # إنشاء مجلدات حفظ الصور محلياً لحمايتها من الحذف عند إغلاق الجهاز
