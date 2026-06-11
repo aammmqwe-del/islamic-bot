@@ -389,4 +389,18 @@ if __name__ == "__main__":
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text_and_admin))
     app.add_handler(CallbackQueryHandler(handle_callbacks))
     
-    app.run_polling(close_loop=False, drop_pending_updates=True)
+# تشغيل سيرفر وهمي في الخلفية عشان Render يرتاح ولا يقفل البوت
+import http.server
+import socketserver
+import threading
+
+def run_dummy_server():
+    PORT = int(os.environ.get("PORT", 10000))
+    handler = http.server.SimpleHTTPRequestHandler
+    with socketserver.TCPServer(("", PORT), handler) as httpd:
+        httpd.serve_forever()
+
+threading.Thread(target=run_dummy_server, daemon=True).start()
+
+# تشغيل البوت الأساسي يكون هو آخر سطر في الملف دائمًا
+app.run_polling(close_loop=False, drop_pending_updates=True)
