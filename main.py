@@ -390,6 +390,7 @@ if __name__ == "__main__":
     app.add_handler(CallbackQueryHandler(handle_callbacks))
     
 # تشغيل سيرفر وهمي في الخلفية عشان Render يرتاح ولا يقفل البوت
+import os
 import http.server
 import socketserver
 import threading
